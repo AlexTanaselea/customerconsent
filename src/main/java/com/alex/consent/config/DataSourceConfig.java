@@ -13,7 +13,7 @@ public class DataSourceConfig {
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://localhost:3307/test_db?serverTimezone=UTC");
+        dataSourceBuilder.url("jdbc:mysql://customerconsent_db_1:3306/test_db?serverTimezone=UTC&useSSL=false");
         dataSourceBuilder.username("mysql");
         dataSourceBuilder.password("mysql");
         return dataSourceBuilder.build();
