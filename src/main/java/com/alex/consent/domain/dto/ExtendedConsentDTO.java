@@ -7,6 +7,9 @@ public class ExtendedConsentDTO extends ConsentDTO {
 
     private String username;
 
+    public ExtendedConsentDTO() {
+    }
+
     public ExtendedConsentDTO(String username, ConsentType type, ChannelName channelName, boolean consent) {
         super(type, channelName, consent);
         this.username = username;

@@ -70,3 +70,13 @@ CustomerID=5, ConsentType= others, ChannelName=’phone’, ChannelConsent=true,
 CustomerID=6, ConsentType=’essentials’, ChannelName=’email’, ChannelConsent=true,
 
 CustomerID=6, ConsentType= ‘others’, ChannelName= ‘social’, ChannelConsent=true
+
+
+How to build:
+
+From the root of the project:
+- docker-compose build
+- docker-compose up
+
+Init database:
+- docker exec -i customerconsent_db_1 mysql -uroot -proot test_db < seed.sql

@@ -1,6 +1,7 @@
 package com.alex.consent.domain.transformer;
 
 import com.alex.consent.domain.dto.ConsentDTO;
+import com.alex.consent.domain.dto.ExtendedConsentDTO;
 import com.alex.consent.domain.repository.jpa.entity.Consent;
 
 import java.util.List;
@@ -19,5 +20,13 @@ public final class ConsentTransformer {
 
     private static ConsentDTO fromEntityToDTO(Consent consent) {
         return new ConsentDTO(consent.getType(), consent.getChannelName(), consent.isConsent());
+    }
+
+    public static Consent fromExtendedDtoToEntity(ExtendedConsentDTO extendedConsentDTO) {
+        Consent consent = new Consent();
+        consent.setType(extendedConsentDTO.getType());
+        consent.setChannelName(extendedConsentDTO.getChannelName());
+        consent.setConsent(extendedConsentDTO.isConsent());
+        return consent;
     }
 }

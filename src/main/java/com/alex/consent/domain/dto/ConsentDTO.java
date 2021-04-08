@@ -11,6 +11,9 @@ public class ConsentDTO {
     private ChannelName channelName;
     private boolean consent;
 
+    public ConsentDTO() {
+    }
+
     public ConsentDTO(ConsentType type, ChannelName channelName) {
         this.type = type;
         this.channelName = channelName;

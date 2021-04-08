@@ -10,25 +10,27 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
-@Table(name = "consents")
 @IdClass(ConsentKey.class)
 public class Consent {
 
     @Id
     @Column(name = "customer_id")
+    @NotNull
     private Long customerId;
 
     @Id
     @Enumerated(EnumType.STRING)
+    @NotNull
     private ConsentType type;
 
     @Id
     @Enumerated(EnumType.STRING)
     @Column(name = "channel_name")
+    @NotNull
     private ChannelName channelName;
 
     private boolean consent;
