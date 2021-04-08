@@ -12,7 +12,7 @@ public class DataSourceConfig {
     @Bean
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
+        dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
         dataSourceBuilder.url("jdbc:mysql://localhost:3307/test_db?serverTimezone=UTC");
         dataSourceBuilder.username("mysql");
         dataSourceBuilder.password("mysql");
