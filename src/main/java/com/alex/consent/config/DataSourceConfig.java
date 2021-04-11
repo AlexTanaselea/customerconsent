@@ -1,21 +1,36 @@
 package com.alex.consent.config;
 
-import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Bean;
+import org.apache.commons.lang3.BooleanUtils;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import javax.sql.DataSource;
 
 @Configuration
-public class DataSourceConfig {
+public class DataSourceConfig implements InitializingBean {
 
-    @Bean
-    public DataSource getDataSource() {
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("com.mysql.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://customerconsent_db_1:3306/test_db?serverTimezone=UTC&useSSL=false");
-        dataSourceBuilder.username("mysql");
-        dataSourceBuilder.password("mysql");
-        return dataSourceBuilder.build();
+    @Value("${execute_seed_file:false}")
+    private Boolean executeSeedFile;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+
+        if (BooleanUtils.isFalse(executeSeedFile)) {
+            return;
+        }
+
+        Resource initSchema = new ClassPathResource("seed.sql");
+        DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initSchema);
+        DatabasePopulatorUtils.execute(databasePopulator, dataSource);
     }
 }

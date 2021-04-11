@@ -9,7 +9,7 @@ services:
     ports:
     - "3306:3306"
     volumes:
-    - my-datavolume:/var/lib/mysql
+    - "./seed.sql:/docker-entrypoint-initdb.d"
   consent-api:
     build:
       context: .
@@ -19,5 +19,3 @@ services:
     - "8080:8080"
     depends_on:
     - db
-volumes:
-  my-datavolume:

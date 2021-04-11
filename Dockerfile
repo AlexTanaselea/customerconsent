@@ -2,7 +2,7 @@ FROM alpine/git as base
 
 WORKDIR /app
 
-RUN git clone https://github.com/AlexTanaselea/customerconsent.git
+RUN git clone --branch improvements https://github.com/AlexTanaselea/customerconsent.git
 
 #
 # Build stage
