@@ -77,6 +77,3 @@ How to build:
 From the root of the project:
 - docker-compose build
 - docker-compose up
-
-Init database:
-- docker exec -i customerconsent_db_1 mysql -uroot -proot test_db < seed.sql

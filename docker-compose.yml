@@ -9,12 +9,16 @@ services:
     ports:
     - "3306:3306"
     volumes:
-    - "./seed.sql:/docker-entrypoint-initdb.d"
+    - "./seed.sql:/docker-entrypoint-initdb.d/seed.sql"
   consent-api:
     build:
       context: .
       dockerfile: Dockerfile
-    image: consent
+    image: consent:updated
+      environment:
+        CUSTOMERCONSENT_MYSQL_HOST: customerconsent_db_1
+        CUSTOMERCONSENT_MYSQL_DB_USER: mysql
+        CUSTOMERCONSENT_MYSQL_DB_PASSWORD: mysql
     ports:
     - "8080:8080"
     depends_on:
